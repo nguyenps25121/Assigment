@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <title>Nguyễn Châu Hải Dương-PS25121</title>
+        <meta charset="utf-8">
+        <style>
+            body{
+                background-color: lightblue;
+                background-image:url("images/background-powerpoint-dep.jpg");
+            }
+            .container{
+                width: 600px;
+                margin: auto;
+                font-size: medium;
+                color: lightgreen;
+                background-color: blueviolet;
+                border: solid 2px white;
+                border-radius: 15px;
+            }
+            form input[id]{
+                width: 210px;
+                text-align: center;
+                border: solid 1px black;
+                padding: 6px 0;
+            }
+            h1{
+                text-align: center;
+                font-size: 30px;
+                color: rgb(11, 194, 41);
+            }
+            #dongho{
+                color: yellow;
+                font-size: large;
+                font-style: italic;
+                text-align: center;
+            }
+            #solangiai{
+                color: yellow;
+            }
+            #kq{
+                margin: auto;
+                height: 150px;
+                border: 1px double white;
+            }
+            form button{
+                width: 120px;
+                height: 40px;
+            }
+            .nut{
+                background-color: lightblue;
+                color: white;
+            }
+            .nut_khoa{
+                background-color: darkgoldenrod;
+                color: white;
+                font-size: 12px;
+            }
+            input{
+                color: darkred;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1> Giải Phương Trình Bậc 2 ax<sup>2</sup>+ bx +c = 0</h1>
+            <span>
+                Sồ lần giải là : 
+                <b id="solangiai"></b>
+            </span>
+            <hr>
+            <form name="f">
+                <p>
+                    <label> Nhập số a:</label>
+                    <input type="text" id="a">
+                </p>
+                <p>
+                    <label> Nhập số b:</label>
+                    <input type="text" id="b">
+                </p>
+                <p>
+                    <label> Nhập số c:</label>
+                    <input type="text" id="c">
+                </p>
+                <button type="button" class="nut_khoa" disabled id="btngiai" onclick="ptb2.giai();dem();"> Giải Phương Trình</button>
+                <button type="button" class="nut" id="btnchoso" onclick="choso();">Cho số</button>
+            </form>
+        <div id="kq"></div>
+        <p id="dongho"></p>
+        </div>
+    </body>
+</html>
+<script>
+    function choso(){
+    var a = Math.round(Math.random()*10);
+    var b = Math.round(Math.random()*10);
+    var c = Math.round(Math.random()*10);
+        // f.a.vaule=a;
+        // console.log(a,f.a.vaule);
+    document.getElementById("a").value=a;
+    document.getElementById("b").value=b;
+    document.getElementById("c").value=c;
+    var btn = document.getElementById("btngiai");
+    btn.disabled =false;
+    btn.className='nut_khoa';
+} 
+</script>
+<script>
+    var ptb2={
+        giai:function(){
+          var a = document.getElementById("a").value;  
+          var b = document.getElementById("b").value; 
+          var c = document.getElementById("c").value; 
+          if(a==0){
+                if(b==0){
+                    if(c==0){
+                        var str=`<p>Phương trình có vô số nghiệm</p>`;
+                        document.getElementById("kq").innerHTML=str;
+                    }else{
+                        var str=`<p>Phương trình có nghiệm</p>`;
+                        document.getElementById("kq").innerHTML=str;
+                    }
+                }else{
+                    var x = -c/b;
+                    var str=`<p>Phương trình có 1 nghiệm là:</p>
+                            <p>x = ${x.toFixed(2)}</p>`;
+                    document.getElementById("kq").innerHTML=str;
+                }
+            }else{
+                var delta = b*b - 4*a*c;
+                if(delta<0){
+                    var str=`<p>Phương trình vô nghiệm</p>`;
+                    document.getElementById("kq").innerHTML=str;
+                }else if(delta==0){
+                    var x0 = (-b)/2*a;
+                    var str=`<p>Phương trình có nghiệm kép:</p>
+                            <p>x = ${x0.toFixed(2)}</p>`;        
+                    document.getElementById("kq").innerHTML=str;
+                }else{
+                    var x1 = (-b + Math.sqrt(delta))/(2*a);
+                    var x2 = (-b - Math.sqrt(delta))/(2*a);
+                    var str=`<p>Phương trình có 2 nghiệm phân biệt:</p>
+                            <p>x<sub>1</sub> = ${x1.toFixed(2)} </p>
+                            <p>x<sub>2</sub> = ${x2.toFixed(2)} </p>`;
+                    document.getElementById("kq").innerHTML=str;
+                }
+            }
+        }
+    }
+</script>
+<script>
+    var solangiai=0;
+    function dem(){
+        solangiai++;
+        document.getElementById("solangiai").innerHTML=solangiai;
+    }
+</script>
+<script>
+    function tg(){
+        var d = new Date();
+        var nam = d.getFullYear();
+        var thang = d.getMonth()+1;
+        var ngay = d.getDate();
+        var gio = d.getHours();
+        var phut = d.getMinutes();
+        var giay = d.getSeconds();
+        var str = `Thời gian ${ngay}/${thang}/${nam} ${gio}:${phut}:${giay}`;
+        document.getElementById("dongho").innerHTML=str;
+    }
+    setInterval("tg()",1000);
+</script>

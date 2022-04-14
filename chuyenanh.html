@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Nguyễn Châu Hải Dương-PS25121</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+        <style>
+            body{
+                background-color:rgb(250, 242, 242);
+                font-family: arial;
+            }
+            #slide h3{
+                text-align: center;
+                color: tomato;
+            }
+            #slide{
+                width: 1300px;
+                height: 500px;
+                margin: 0 auto;
+                position: relative;
+            }
+            #slide img{
+                width: 100%;
+                height: 125%;
+            }
+            #slide i:first-child{
+                position: absolute;
+                top: 55%; left: 30px;
+                color: white;
+                font-size: 40px;
+            }
+            #slide i:last-child{
+                position: absolute;
+                top: 55%; right: 30px;
+                font-size: 40px;
+                color: white;
+            }
+            #slide  #dem{
+                margin: 0;
+                padding: 10px;
+                background-color: black;
+                color: white;;
+                font-size: medium;
+                text-align: center;
+                font-weight: bold;
+                border: 5px;
+            }
+        </style>
+        
+    </head>
+    <body>
+       <div id="slide">
+           <h3>
+               Ablum ảnh làng quê 
+           </h3>
+            <img id="show" src="images/1.jpg">
+            <div class="dieu huong">
+            <i class="fa fa-chevron-circle-left" onclick="prev()"></i>
+            <i class="fa fa-chevron-circle-right" onclick="next()"></i>
+            </div>
+           <p id="dem">1/8</p> 
+        </div> 
+    </body>  
+</html>  
+<script>
+    var arr_hinh=[
+        "images/1.jpg",
+        "images/2.jpg",
+        "images/3.jpg",
+        "images/4.jpg",
+        "images/5.jpg",
+        "images/6.jpg",
+        "images/7.jpg",
+        "images/8.jpg",
+    ]
+    var index=0;
+    function next(){
+        index++;
+        if(index>=arr_hinh.length)index=0;
+        var hinh = document.getElementById("show");
+        hinh.src=arr_hinh[index];
+        document.getElementById("dem").innerHTML=(index+1)+"/" +(arr_hinh.length);
+    }
+    function prev(){
+        index--;
+        if(index<0) index = arr_hinh.length-1;
+        var hinh= document.getElementById("show");
+        hinh.src = arr_hinh[index];
+        document.getElementById("dem").innerHTML=(index+1)+"/"+(arr_hinh.length);
+    }
+    setInterval("next()",10000);
+</script>
